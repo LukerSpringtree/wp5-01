@@ -157,7 +157,10 @@ sideEffects: ['*.css'] , // 标示除了css 是要保留的之外, 其他都不�
 # 
 
 
-# 
+# 研究输出, 看看webpack究竟往命令行写了什么
+ℹ ｢wds｣: Project is running at http://localhost:8080/
+ℹ ｢wds｣: webpack output is served from ./testPublicPath/
+ℹ ｢wds｣: Content not from webpack is served from /Users/ludejing/github/wp5-01
 
 
 

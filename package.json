@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode production",
     "start": "webpack serve"
   },
   "author": "",
@@ -13,12 +13,14 @@
     "@babel/core": "^7.13.1",
     "@babel/preset-env": "^7.13.5",
     "@babel/preset-react": "^7.12.13",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "babel-loader": "^8.2.2",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
     "crypto-js": "^4.0.0",
     "css-loader": "^5.1.0",
     "html-webpack-plugin": "^5.2.0",
+    "react-refresh": "^0.9.0",
     "stream-browserify": "^3.0.0",
     "style-loader": "^2.0.0",
     "webpack": "^5.24.2",

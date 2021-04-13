@@ -1,50 +1,22 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ReactRefreshWebpackPlugin = require("@pmmmwh/react-refresh-webpack-plugin");
 
 module.exports = {
   mode: "development",
   devtool: false,
-  /* 这个 cache 是默认开启的?
-    实验下来并非默认开启
-  */
   cache: {
-    // filesystem 要比 memory 还要快
     type: "filesystem", // memory filesystem
-    // 这个值是一个默认值
-    // cacheDirectory: path.resolve(__dirname, 'node_modules/.cache/webpack')
   },
-  // 这一段还得重新 在来跟着视频学一遍
-  // entry: {
-  //   /*
-  //   1. deterministic 通过这样的配置,可以让文件的名字变的可以确定
-  //   减少缓存失效的问题 , 从而实现一个长期环境
-
-  //   2. named则是通过, 文件的路径来凑出最后输出的文件名字的
-
-  //   3.
-  //    */
-  //   // moduleIds: 'natural',
-  //   // chunkIds: 'natural',
-  //   /* 区分chunk和module */
-  // },
-  // output: {
-  //   filename: '[name].js', // 入口代码块文件名的生成规则
-  //   chunkFilename: '[name].js', // 非入口模块的生成规则
-  //   /*
-  //   1. import() 代码调用是非入口
-  //   2. split chunks 处理的第三方代码也是非入口
-  //   3. common 共享模块也都是非入口文件
-  //   */
-  // },
+  output: {
+    // 那么就是说. 这个output只有配置生产有用?
+    path: path.resolve(__dirname, 'LLLTestDist'),
+    publicPath: './testPublicPath/',
+    publicPath: '/',
+    filename: "[name].js", // 入口代码块文件名的生成规则
+    chunkFilename: "[name].js", // 非入口模块的生成规则
+  },
   resolve: {
-    // 写法1
-    // fallback: {
-    //   'crypto': require.resolve('crypto-browserify'),
-    //   'stream': require.resolve('stream-browserify'),
-    //   'buffer': require.resolve('buffer'),
-    // },
-
-    // 写法2
     fallback: {
       crypto: false,
       stream: false,
@@ -83,12 +55,28 @@ module.exports = {
       },
     ],
   },
+  /* 
+  devServer.publicPath 
+  将用于确定 
+  bundle 的来源，并具有优先级高于 contentBase。
+  
+  */
+
+  /* 其实 dev 和 output是独立开来的! 那么怎么确定初始化的配置呢 */
   devServer: {
     port: 8080,
+    hot: true,
+    // path: '/',
+    // publicPath: '/devServerPublicPath',
+    /* 这个让初始化的时候, 加载到了本地的资源, 但是.  */
+    // publicPath: '/devServerPublicPath',
+    // contentBase: './testDist',
+    // contentBase: './',
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",
     }),
+    new ReactRefreshWebpackPlugin(),
   ],
 };
