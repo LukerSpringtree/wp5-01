@@ -6,5 +6,3 @@ const b = 5;
 revert content
 const b = 7;
 const b = 8;
-const b = 8;
-const b = 9llala ;
